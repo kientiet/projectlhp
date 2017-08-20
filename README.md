@@ -4,15 +4,10 @@ Idea: My team and I are maintaining a facebook page called "LHP Confessions". Si
 posts already and it's hard to find the old posts on facebook. So, I want to take this opportunity to create a recommender system that 
 can give our users their "favorite" kind of posts.
 
-Strategy: I plan to build the content-based model first. Because it takes lots of time and effort to analyze and understand about posts,
-specially, topic of posts that we have. Second reason is I want to build automatic system that can eliminate posts that are not suitable 
-with our rules.
-  After I done with content-based model, I will start to build CF on the implicit feedback.
+- In this project, I implement two kind of model for recommendation system: 
++ Matrix Factorize with ALS
++ Probabilistic Matrix Factorize with Momentum Gradient Descent (include users and items bias). Beside that, I also tried online-update with Stochastic Gradient Descent. In this second approach, I will change the model to more advance way: Change the users and items bias to time dependence. And choose the sample for online-update more carefully instead randomly.
 
-This project is still in developing times. But I've done some technique:
-- Find to token paragraph - using CRF
-- I put all the token to mongodb. 
+- Beside recommendation system, I also analyzed posts on facebook by doc2vec with some pre-processing steps.
 
-Next step:
-- I will put word2vec and paragraph2vec to my project. I plan to use these technologies because the result of those are in vector form,
-which is suitable for other part of learning.
+- Further work, I will implement long-short term memory to this data to test the accuracy. 
