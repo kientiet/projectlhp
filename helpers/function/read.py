@@ -13,47 +13,20 @@ def read_data():
     # reactions = pd.read_csv("lhpconfessions_facebook_reactions.csv")
     return posts, reactions
 
-def read_excel_file():
-    xl = pd.ExcelFile("term_list.xlsx")
-    bag_of_words = pd.DataFrame()
-    for sheet_names in xl.sheet_names:
-        # print(sheet_names)
-        temp = xl.parse(sheet_names)
-        bag_of_words = bag_of_words.append(temp, ignore_index = True)
-    return bag_of_words, xl.sheet_names
-
-def read_vocab():
-    xl = pd.ExcelFile(os.path.join(os.path.dirname(__file__), "../raw_input/statistic_words_frequency.xlsx"))
-    vocab = pd.DataFrame()
-    for sheet_names in xl.sheet_names:
-        temp = xl.parse(sheet_names)
-        vocab = vocab.append(temp, ignore_index = True)
-
-    return vocab['word'].tolist()
-
-def read_many_file(filenames):
+def read_many_file(filenames, directory):    
     posts = pd.DataFrame()
     for i in range(0, len(filenames)):
-        temp = pd.read_csv(filenames[i] + "_facebook_statuses.csv")
+        # print(os.path.exists(newDir))
+        temp = pd.read_csv(os.path.join(os.getcwd(), directory, filenames[i] + "_facebook_statuses.csv"))
         posts = posts.append(temp, ignore_index = True)
     return posts
 
-def read_vocab_pandas():
-    xl = pd.ExcelFile(os.path.join(os.path.dirname(__file__), "../raw_input/statistic_words_frequency.xlsx"))
-    vocab = pd.DataFrame()
-    for sheet_names in xl.sheet_names:
-        temp = xl.parse(sheet_names)
-        vocab = vocab.append(temp, ignore_index = True)
+def read_reactions(directory):
+    reactions = pd.read_csv(os.path.join(os.getcwd(), directory, "lhpconfessions_facebook_reactions.csv"))
+    return reactions
 
-    return vocab
-
-def read_batch_words():
-    # xl = pd.ExcelFile(os.path.join(os.path.dirname(__file__), "../raw_input/results/batch_words.xlsx"))
-    xl = pd.ExcelFile("experiment_1_1.xlsx")
-    vocab = pd.DataFrame()
-    for sheet_names in xl.sheet_names:
-        temp = xl.parse(sheet_names)
-        vocab = vocab.append(temp, ignore_index = True)
-
-    vocab = vocab[vocab.word != ' ']
-    return vocab
+def read_full_data(directory):
+    train = pd.read_excel(os.path.join(os.getcwd(), directory), sheetname="train")
+    cros = pd.read_excel(os.path.join(os.getcwd(), directory), sheetname="cros")
+    test = pd.read_excel(os.path.join(os.getcwd(), directory), sheetname="test")
+    return train, cros, test
