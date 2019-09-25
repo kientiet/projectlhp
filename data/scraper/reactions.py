@@ -5,8 +5,8 @@ import csv
 import time
 import codecs
 
-app_id = "1624118484537383"
-app_secret = "96feeb7700b912a59e69f28138712762"
+app_id = ""
+app_secret = ""
 
 file_id = "lhpconfessions"
 
