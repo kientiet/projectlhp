@@ -91,6 +91,8 @@ def processFacebookPageFeedStatus(status, access_token):
     link_name = '' if 'name' not in status.keys() else \
             unicode_normalize(status['name'])
     status_type = status['type']
+
+    # Check if link has image or not
     status_link = '' if 'link' not in status.keys() else \
             unicode_normalize(status['link'])
 
